@@ -18,7 +18,6 @@ public class ServoTest extends Command {
     	serv = new Servo(9);
     }
 
-    // ore this Command runs the first time
     protected void initialize() {
     	if(degrees == 90)
     	{
