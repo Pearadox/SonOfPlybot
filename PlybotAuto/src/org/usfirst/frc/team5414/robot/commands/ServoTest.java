@@ -34,7 +34,7 @@ public class ServoTest extends Command {
     	serv.setAngle(degrees);
     	changed = true;
     }
-//1234567890
+//1234
     protected boolean isFinished() {
         return changed;
     }
