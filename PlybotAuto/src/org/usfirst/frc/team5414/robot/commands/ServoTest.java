@@ -30,13 +30,12 @@ public class ServoTest extends Command {
     	changed = false;
     }
 
-    // Called repeatedly when this Command is scheduled to ru
     protected void execute() {
     	serv.setAngle(degrees);
     	changed = true;
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    // Make this return true when this Command no longer needs to run execute(
     protected boolean isFinished() {
         return changed;
     }
