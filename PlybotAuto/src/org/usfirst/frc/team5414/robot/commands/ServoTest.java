@@ -35,7 +35,7 @@ public class ServoTest extends Command {
     	changed = true;
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    // Make this return true when this Command no longer needs to run execute(
     protected boolean isFinished() {
         return changed;
     }
