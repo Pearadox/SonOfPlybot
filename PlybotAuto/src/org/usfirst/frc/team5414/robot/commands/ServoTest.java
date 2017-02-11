@@ -34,7 +34,7 @@ public class ServoTest extends Command {
     	serv.setAngle(degrees);
     	changed = true;
     }
-//dsfadsf/as/dasf/fasd/f
+//dsfadsf
     protected boolean isFinished() {
         return changed;
     }
