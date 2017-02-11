@@ -30,7 +30,6 @@ public class ServoTest extends Command {
     	changed = false;
     }
 
-    // Called repeatedly when this Command is scheduled to ru
     protected void execute() {
     	serv.setAngle(degrees);
     	changed = true;
