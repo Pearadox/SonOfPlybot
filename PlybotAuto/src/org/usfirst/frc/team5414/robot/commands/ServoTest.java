@@ -18,7 +18,7 @@ public class ServoTest extends Command {
     	serv = new Servo(9);
     }
 
-    // Called just before this Command runs the first time
+    // ore this Command runs the first time
     protected void initialize() {
     	if(degrees == 90)
     	{
