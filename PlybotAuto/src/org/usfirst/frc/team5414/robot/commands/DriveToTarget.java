@@ -30,6 +30,7 @@ public class DriveToTarget extends Command {
 	    	AreaArray = Robot.table.getNumberArray("area", new double[0]);
 	    	SmartDashboard.putNumber("Area 1", AreaArray[0]);
 	    	SmartDashboard.putNumber("Area 2", AreaArray[1]);
+		//-.4 should be a value in RobotMap.java so that we can modify this more easily
 	    	Robot.drivetrain.drive(-.4, -.4);
 	   	}
     	catch(Exception e)
