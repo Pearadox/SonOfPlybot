@@ -20,7 +20,7 @@ public class PivotToTargets extends Command {
 	int right = 1;
 	double minspeed = .4;
 	double maxspeed = .6;
-	double cameraWidthInPixels = 320;
+	double cameraWidthInPixels = 360;
 	double speed = 0;
 	double kp = (maxspeed - minspeed)/129;
 	double[] CenterArray;
@@ -31,8 +31,6 @@ public class PivotToTargets extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("AT", "PivToTargets");
-    	SmartDashboard.putBoolean("TOO MANY TARGETS", false);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -52,23 +50,20 @@ public class PivotToTargets extends Command {
     			speed = minspeed;
     		}
 	    	if(CenterArray.length > 2){
-	    		SmartDashboard.putBoolean("TOO MANY TARGETS", true);
+	    		
     		return;
 	    	}
 	    	if(CenterArray.length < 2){
 		 	    if (CenterArray.length == 0){
 		 	    	Robot.drivetrain.drive(-speed, speed);
-		    		SmartDashboard.putString("Robot Moving", "searching");
 		    		
 		    	}
 		    	else if(CenterArray.length == 1){
 		    		if(CenterArray[0] < cameraViewCenter){
 		    			Robot.drivetrain.drive(speed, -speed);
-		    			SmartDashboard.putString("Robot Moving", "searching right");
 		    		}
 		    		else {
 		    			Robot.drivetrain.drive(-speed, speed);
-		    			SmartDashboard.putString("Robot Moving", "searching left");
 		    		}
 		    	}	
 	    	}
@@ -89,14 +84,11 @@ public class PivotToTargets extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	DriverStation.reportWarning("PivotToTargets Finished", true);
     	Robot.drivetrain.drive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	DriverStation.reportWarning("PivotToTargets Interrupted", true);
-    	Robot.drivetrain.drive(0, 0);
     }
 }

@@ -77,7 +77,7 @@ public class Drivetrain extends Subsystem {
     		ax2 = stick.getRawAxis(2);
     	}
     	
-    	drive.arcadeDrive(ax1,ax2);
+    	drive.arcadeDrive(ax1 * ax1,ax2 * ax2);
     }
     public void toggleLight()
     {

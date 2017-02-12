@@ -17,6 +17,7 @@ public class WheelEncoder extends Subsystem {
 	public WheelEncoder()
 	{
 		encoder = new Encoder(0, 1, false, Encoder.EncodingType.k2X);
+		
 	}
 	 
 	public double getDistance()
@@ -28,6 +29,7 @@ public class WheelEncoder extends Subsystem {
 	{
 		return encoder.getRate();
 	}
+
 	public void reset()
 	{
 		encoder.reset();

@@ -24,7 +24,7 @@ public class PivotToCenter extends Command {
 	final double cameraWidthInPixels = 360;	
 	double speed = 0;
 	double kp;
-	final double cameraViewCenter = cameraWidthInPixels/2;
+	final double cameraViewCenter = 180;
 	double[] CenterArray;
 //	double[] AreaArray = Robot.table.getNumberArray("area", new double[0]);
 	double CenterPanels;
@@ -42,6 +42,7 @@ public class PivotToCenter extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
+    	
     	//SELECT CENTERS
     	try{
     		CenterArray = Robot.table.getNumberArray("centerX", new double[0]);
@@ -64,7 +65,7 @@ public class PivotToCenter extends Command {
 	    
     	
     	//DESIGNATE SPEED BASED ON ERROR (PID)
-    	double CenterPanels = ((LeftPanel + RightPanel)/2);
+    	CenterPanels = ((LeftPanel + RightPanel)/2.);
     	try {
     		SmartDashboard.putNumber("CenterPanels", CenterPanels);
         	SmartDashboard.putNumber("LeftPanel", CenterArray[0]);
@@ -93,12 +94,10 @@ public class PivotToCenter extends Command {
     	try {
     		SmartDashboard.putString("Robot Moving", "trying to center");	
     		if(CenterPanels <= cameraViewCenter) {
-    	   		Robot.drivetrain.drive(.3, -.3);
-    	   		SmartDashboard.putString("Robot Moving", "centering right");
-    	   		SmartDashboard.putString("Robot Moving", "centering right out");
+    	   		Robot.drivetrain.drive(.375, -.375);
    			}
    			else if(CenterPanels > cameraViewCenter) { //Centering left
-   	   			Robot.drivetrain.drive(-.3, .3); 
+   	   			Robot.drivetrain.drive(-.375, .375); 
    	   			DriverStation.reportWarning("CenteringLeft", true);
     		}
     		else
@@ -113,7 +112,9 @@ public class PivotToCenter extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(CenterPanels > (cameraViewCenter - 15) && CenterPanels < (cameraViewCenter + 15)){
+    	DriverStation.reportWarning("PivotToCenter testing finished method", true);
+    	DriverStation.reportWarning(CenterPanels + "", true);
+    	if(CenterPanels < (cameraViewCenter + 15) && CenterPanels > (cameraViewCenter - 15)){
     		Robot.drivetrain.drive(0, 0);
     		return true;
     	}
@@ -122,7 +123,6 @@ public class PivotToCenter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	DriverStation.reportWarning("PivotToCenter Finished", true);
     	Robot.drivetrain.drive(0, 0);
     }
 

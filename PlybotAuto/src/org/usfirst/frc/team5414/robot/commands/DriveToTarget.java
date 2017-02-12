@@ -20,7 +20,6 @@ public class DriveToTarget extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	SmartDashboard.putString("AT", "DriveToTarget");
     	
     }
 
@@ -45,9 +44,8 @@ public class DriveToTarget extends Command {
     	try{
         	
 	    	if(AreaArray.length == 2){ 
-	    		if(AreaArray[0] > 4000 || AreaArray[1] > 4000){
+	    		if(AreaArray[0] > 3000 || AreaArray[1] > 3000){
 	    			Robot.drivetrain.drive(0, 0);
-	    			SmartDashboard.putString("AT", "Done");
 	    			return true;
 	    		}
 	    	}
@@ -56,7 +54,6 @@ public class DriveToTarget extends Command {
 	    		if(AreaArray[0] > 4000 || AreaArray[1] > 4000 || AreaArray[3] > 4000)
 	    		{
 	    			Robot.drivetrain.drive(0, 0);
-	    			SmartDashboard.putString("AT", "Done");
 	    		}
 	    	}
         	
@@ -68,7 +65,6 @@ public class DriveToTarget extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	DriverStation.reportWarning("DriveToTarget Finished", true);
     	Robot.drivetrain.drive(0, 0);
     }
 

@@ -17,7 +17,7 @@ public class DriveEncDist extends Command implements PIDOutput{
 	double distance;
 	double originalAngle;
 	double kP = 0.00005;
-	double kI = 0.00001;
+	double kI = 0.00003;
 	double kD = 0.02;
 	final double kToleranceDegrees = 0.0f;
 	double speed = 0.5;
@@ -59,7 +59,6 @@ public class DriveEncDist extends Command implements PIDOutput{
 //    	{
 //    		Robot.drivetrain.arcadeDrive(-.5, -1*changeInAngle*kP);
 //    	}
-    	
     	kP = prefs.getDouble("Drive kP", kP);
     	kI = prefs.getDouble("Drive kI", kI);
     	kD = prefs.getDouble("Drive kD", kD);

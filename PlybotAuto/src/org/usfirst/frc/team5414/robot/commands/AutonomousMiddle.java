@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class GoToPeg extends CommandGroup {
+public class AutonomousMiddle extends CommandGroup {
 
-    public GoToPeg() {
+    public AutonomousMiddle() {
     	
-    	addSequential(new PivotToTargets());	//Rotate to targets
+    	addSequential(new DriveEncDist(1));
     	
     	addSequential(new PivotToCenter());		//Rotate to center of targets
     	

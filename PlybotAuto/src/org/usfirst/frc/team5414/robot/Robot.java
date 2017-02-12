@@ -18,7 +18,7 @@ import org.opencv.imgproc.Imgproc;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
-import org.usfirst.frc.team5414.robot.commands.AutonomousDrive;
+import org.usfirst.frc.team5414.robot.commands.AutonomousLeftSide;
 import org.usfirst.frc.team5414.robot.commands.ServoTest;
 import org.usfirst.frc.team5414.robot.subsystems.Camera;
 import org.usfirst.frc.team5414.robot.subsystems.Climber;
@@ -60,10 +60,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		try{
-			cam1 = new UsbCamera("cam1", 1); 	
-			cam1.setResolution(280, 200);
-			CameraServer.getInstance().startAutomaticCapture(0);
-			CameraServer.getInstance().startAutomaticCapture(cam1);
+//			cam1 = new UsbCamera("cam1", 1); 
+			CameraServer.getInstance().startAutomaticCapture(1);
 		} catch(Exception e){}
 		table = NetworkTable.getTable("GRIP/myContoursReport");
 		geararm = new GearArm();
@@ -80,8 +78,7 @@ public class Robot extends IterativeRobot {
 		navx = new NavX();
 //		shoot=new Wheel();
 		oi = new OI();
-		autonomousCommand = new AutonomousDrive();
-		
+		autonomousCommand = new AutonomousLeftSide();
 //		for (double area:areas) 
 //        {
 //        	SmartDashboard.putNumber("Area", area);
@@ -171,15 +168,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Encoder Distance", encoder.getDistance());
 		SmartDashboard.putNumber("Yaw Angle", navx.getYaw());
 		Scheduler.getInstance().run();
-		test="Keys: ";
 		currentButtonState = oi.getJoystick1().getRawButton(5);
 //		SmartDashboard.putNumber("Framerate", table.getNumber("myNumber", Double.NaN));
 //    	SmartDashboard.putBoolean("HasArea",  table.containsKey("area"));
-    	
-    	for (String i: table.getKeys())
-    		test+=i+", ";
-    	test+="\n";
-    	SmartDashboard.putString("Keys", test);
     	
     		try {
 				SmartDashboard.putString("Area: ", Arrays.toString(table.getNumberArray("area", new double[0])));

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Joystick;
 //import org.usfirst.frc.team5414.robot.commands.ActivateButt;
 //import org.usfirst.frc.team5414.robot.commands.ActivateTract;
 //import org.usfirst.frc.team5414.robot.commands.Activatehalf;
-import org.usfirst.frc.team5414.robot.commands.AutonomousDrive;
+import org.usfirst.frc.team5414.robot.commands.AutonomousLeftSide;
 import org.usfirst.frc.team5414.robot.commands.ClimberStop;
 //import org.usfirst.frc.team5414.robot.commands.Align;
 import org.usfirst.frc.team5414.robot.commands.GoToPeg;
