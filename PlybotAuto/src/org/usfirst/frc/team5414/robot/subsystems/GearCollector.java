@@ -22,11 +22,15 @@ public class GearCollector extends Subsystem {
     public void initDefaultCommand() {
     }
     
-    public void intake() {
+    public void StartIntake() {
     	gearwheels.set(RobotMap.intakeSpeed);
     }
-    public void outtake() {
+    public void StartOuttake() {
     	gearwheels.set(RobotMap.outtakeSpeed);
+    }
+    
+    public void Stop() {
+    	gearwheels.set(0);
     }
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

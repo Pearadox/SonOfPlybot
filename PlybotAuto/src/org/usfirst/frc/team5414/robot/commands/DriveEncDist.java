@@ -1,10 +1,6 @@
 package org.usfirst.frc.team5414.robot.commands;
 
 import org.usfirst.frc.team5414.robot.Robot;
-
-import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Preferences;

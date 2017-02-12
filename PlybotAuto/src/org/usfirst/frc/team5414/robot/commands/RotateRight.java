@@ -1,10 +1,7 @@
 package org.usfirst.frc.team5414.robot.commands;
 
 import org.usfirst.frc.team5414.robot.Robot;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,7 +26,6 @@ public class RotateRight extends Command {
     protected void execute() {
     	
     	changeInAngle = Robot.navx.getYaw() - originalAngle;
-    	SmartDashboard.putNumber("Change In Angle", changeInAngle);
     	Robot.drivetrain.drive(-.4, .4);
     }
 
@@ -48,7 +44,6 @@ public class RotateRight extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	
-    	SmartDashboard.putString("debug", "end");
     	Robot.drivetrain.drive(0, 0);
 
     }

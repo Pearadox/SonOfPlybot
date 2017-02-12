@@ -24,7 +24,7 @@ public class CollectGear extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.geararm.lower();
-    	Robot.gearcollector.intake();
+    	Robot.gearcollector.StartIntake();
     	Robot.geararm.raise();
     	done = true;
     	

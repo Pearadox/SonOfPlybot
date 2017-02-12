@@ -10,7 +10,9 @@ public class AutonomousLeftSide extends CommandGroup {
     public AutonomousLeftSide() {
     
     	addSequential(new DriveEncDist(2));
+    	
     	addSequential(new RotateLeft(45));
+    	
     	addSequential(new GoToPeg());
 
     	
