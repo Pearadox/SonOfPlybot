@@ -28,7 +28,7 @@ public class DriveToTarget extends Command {
     	try
     	{
 	    	AreaArray = Robot.table.getNumberArray("area", new double[0]);
-	    	Robot.drivetrain.drive(-1 * RobotMap.goToPegSpeed, -1 * RobotMap.goToPegSpeed);
+        Robot.drivetrain.drive(-1 * RobotMap.goToPegSpeed, -1 * RobotMap.goToPegSpeed);
 	   	}
     	catch(Exception e)
     	{
