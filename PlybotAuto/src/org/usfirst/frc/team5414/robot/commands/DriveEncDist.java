@@ -32,6 +32,9 @@ public class DriveEncDist extends Command implements PIDOutput{
     // Called just before this Command runs the first time
     protected void initialize() {
     	prefs = Preferences.getInstance();
+    	prefs.putDouble("kP", kP);
+    	prefs.putDouble("kI", kI);
+    	prefs.putDouble("kD", kD);
 //    	ahrs = new AHRS(SPI.Port.kMXP);
 //    	ahrs.zeroYaw();
     	Robot.encoder.reset();
