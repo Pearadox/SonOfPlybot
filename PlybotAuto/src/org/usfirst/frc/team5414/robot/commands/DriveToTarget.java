@@ -1,10 +1,10 @@
 package org.usfirst.frc.team5414.robot.commands;
 
 import org.usfirst.frc.team5414.robot.Robot;
+import org.usfirst.frc.team5414.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -28,10 +28,7 @@ public class DriveToTarget extends Command {
     	try
     	{
 	    	AreaArray = Robot.table.getNumberArray("area", new double[0]);
-	    	SmartDashboard.putNumber("Area 1", AreaArray[0]);
-	    	SmartDashboard.putNumber("Area 2", AreaArray[1]);
-		//-.4 should be a value in RobotMap.java so that we can modify this more easily
-	    	Robot.drivetrain.drive(-.4, -.4);
+        Robot.drivetrain.drive(-1 * RobotMap.goToPegSpeed, -1 * RobotMap.goToPegSpeed);
 	   	}
     	catch(Exception e)
     	{
@@ -45,7 +42,7 @@ public class DriveToTarget extends Command {
     	try{
         	
 	    	if(AreaArray.length == 2){ 
-	    		if(AreaArray[0] > 3000 || AreaArray[1] > 3000){
+	    		if(AreaArray[0] > 3200 || AreaArray[1] > 3200){
 	    			Robot.drivetrain.drive(0, 0);
 	    			return true;
 	    		}
@@ -59,7 +56,7 @@ public class DriveToTarget extends Command {
 	    	}
         	
     	}catch (Exception e) {
-    		DriverStation.reportWarning("Error at DriveToTarget Finished", true);
+    		DriverStation.reportWarning("Error at DriveToTarget isFinished", true);
 		}
         return false;
     }
@@ -72,7 +69,6 @@ public class DriveToTarget extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	DriverStation.reportWarning("DriveToTarget Interrupted", true);
     	Robot.drivetrain.drive(0, 0);
     }
 }

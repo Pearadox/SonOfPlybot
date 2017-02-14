@@ -18,7 +18,7 @@ public class NavX extends Subsystem implements PIDSource{
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-    	ahrs = new AHRS(SPI.Port.kMXP);
+//    	ahrs = new AHRS(SPI.Port.kMXP);
     }
     
     public double getYaw()

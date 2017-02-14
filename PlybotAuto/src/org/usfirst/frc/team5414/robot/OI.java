@@ -8,11 +8,10 @@ import edu.wpi.first.wpilibj.Joystick;
 //import org.usfirst.frc.team5414.robot.commands.Activatehalf;
 import org.usfirst.frc.team5414.robot.commands.AutonomousLeftSide;
 import org.usfirst.frc.team5414.robot.commands.ClimberStop;
+import org.usfirst.frc.team5414.robot.commands.CollectGear;
 //import org.usfirst.frc.team5414.robot.commands.Align;
 import org.usfirst.frc.team5414.robot.commands.GoToPeg;
 import org.usfirst.frc.team5414.robot.commands.LiftingGroup;
-import org.usfirst.frc.team5414.robot.commands.ServoTest;
-import org.usfirst.frc.team5414.robot.commands.ToggleCamera;
 import org.usfirst.frc.team5414.robot.commands.ToggleLight;
 import org.usfirst.frc.team5414.robot.commands.yolo;
 import org.usfirst.frc.team5414.robot.commands.yolostop;
@@ -35,13 +34,13 @@ public class OI {
 	
 	public OI(){
 
-		JoystickButton ActivateButterfly = new JoystickButton(stick, RobotMap.Butterfly);
+//		JoystickButton ActivateButterfly = new JoystickButton(stick, RobotMap.BtnButterfly);
 		JoystickButton ToggleLight = new JoystickButton(stick, RobotMap.BtnLight);
-		JoystickButton ActivateHalf = new JoystickButton(stick, RobotMap.BtnHalf);
+//		JoystickButton ActivateHalf = new JoystickButton(stick, RobotMap.BtnHalf);
 		JoystickButton RobotAlign = new JoystickButton(stick, RobotMap.BtnVision);
 		JoystickButton Climbing = new JoystickButton(stick, RobotMap.BtnClimber);
 		JoystickButton PlsStopClimbing = new JoystickButton(stick, RobotMap.BtnStop);
-		JoystickButton SwitchCamera = new JoystickButton(stick, RobotMap.BtnCamera);
+		JoystickButton CollectGear = new JoystickButton(stick, RobotMap.BtnCollectGear);
 
 //		ActivateButterfly.whenPressed(new ActivateButt());
 //		ActivateHalf.whenPressed(new Activatehalf());
@@ -51,7 +50,7 @@ public class OI {
 		ToggleLight.whenPressed(new ToggleLight());
 		Climbing.whenPressed(new LiftingGroup());
 		PlsStopClimbing.whenPressed(new ClimberStop());
-//		SwitchCamera.whenPressed(new ToggleCamera());
+		CollectGear.whenPressed(new CollectGear());
 	}
 	public Joystick getJoystick1()
 	{

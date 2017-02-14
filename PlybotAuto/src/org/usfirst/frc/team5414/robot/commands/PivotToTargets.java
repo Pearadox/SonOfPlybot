@@ -4,7 +4,6 @@ import org.usfirst.frc.team5414.robot.Robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -42,7 +41,7 @@ public class PivotToTargets extends Command {
     		//check if 2 blobs 
 //    		error = Math.abs(cameraViewCenter - CenterPanels);
 //    		speed = error * kp +.3;
-    		speed = .4;
+    		speed = .45;
     		if(speed > maxspeed) {
     			speed = maxspeed;
     		}
@@ -75,8 +74,10 @@ public class PivotToTargets extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(CenterArray.length >= 2){ //TODO >=
-    		return true;
+    	if(CenterArray.length >= 2){
+    		if(Math.abs(CenterArray[0] - CenterArray[1]) <= CenterArray[0] * .4)
+    			//if difference between 0 and 1 is less than 40% of 0
+    			return true;
     	}
 //    	DriverStation.reportError("No targets found", CenterArray.length == 0);
         return false;

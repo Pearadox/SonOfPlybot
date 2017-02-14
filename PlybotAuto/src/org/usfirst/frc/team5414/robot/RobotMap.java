@@ -12,13 +12,13 @@ public class RobotMap {
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
 
-	public static int Butterfly= 1;
+	public static int BtnButterfly= 1;
 	public static int BtnLight= 2;
 	public static int BtnHalf= 3;
 	public static int BtnVision = 4;
 	public static int BtnClimber = 5;
 	public static int BtnStop = 6;
-	public static int BtnCamera = 11;
+	public static int BtnCollectGear = 11;
 	
 	public static double ShooterkP = 0;
 	public static double ShooterkI = 0;
@@ -33,14 +33,16 @@ public class RobotMap {
 	public static int PWMShooter = 6;
 	public static int PWMGearWheels = 4;
 	public static int PWMlifter = 4;
-	public static int pdpclimber = 15;
+	public static int PDPclimber = 15;
 	public static int climberCurrentSpike = 64;
 	public static double lifterLiftSpeed = -1.0;
-	public static double armRaiseSpeed = 0.5;
-	public static double armLowerSpeed = -0.5;
+	public static double armRaiseSpeed = 0.4;
+	public static double armLowerSpeed = -0.4;
 	public static double intakeSpeed = 0.5;
 	public static double outtakeSpeed = -0.5;
 	public static double lifterholdspeed = -0.4;
+	
+	public static double  goToPegSpeed= -.4;
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;

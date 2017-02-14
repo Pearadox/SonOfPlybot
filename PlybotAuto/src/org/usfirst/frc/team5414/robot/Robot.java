@@ -2,7 +2,6 @@
 package org.usfirst.frc.team5414.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -11,6 +10,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 
+//import edu.wpi.first.wpilibj.
 import java.util.*;
 import org.opencv.core.Mat;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -19,8 +19,8 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import org.usfirst.frc.team5414.robot.commands.AutonomousLeftSide;
-import org.usfirst.frc.team5414.robot.commands.ServoTest;
-import org.usfirst.frc.team5414.robot.subsystems.Camera;
+import org.usfirst.frc.team5414.robot.commands.AutonomousMiddle;
+import org.usfirst.frc.team5414.robot.commands.AutonomousRightSide;
 import org.usfirst.frc.team5414.robot.subsystems.Climber;
 import org.usfirst.frc.team5414.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team5414.robot.subsystems.Electrical;
@@ -28,6 +28,7 @@ import org.usfirst.frc.team5414.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team5414.robot.subsystems.GearArm;
 import org.usfirst.frc.team5414.robot.subsystems.GearCollector;
 import org.usfirst.frc.team5414.robot.subsystems.NavX;
+import org.usfirst.frc.team5414.robot.subsystems.Servo1;
 //import org.usfirst.frc.team5414.robot.subsystems.ShooterPID;
 import org.usfirst.frc.team5414.robot.subsystems.Wheel;
 import org.usfirst.frc.team5414.robot.subsystems.WheelEncoder;
@@ -35,7 +36,6 @@ import org.usfirst.frc.team5414.robot.subsystems.WheelEncoder;
 public class Robot extends IterativeRobot {
 	
 	public static Drivetrain drivetrain;
-	public static Camera cam;
 	public static Wheel shoot;
 	public static Compressor compressor;
 	public static NetworkTable table; 
@@ -47,6 +47,9 @@ public class Robot extends IterativeRobot {
 	public static Electrical electrical;
 	public static GearArm geararm;
 	public static GearCollector gearcollector;
+	public static REVDigitBoard revdigitboard;
+	public static Servo1 servo1;
+//	public static DigitalInput 
 //	public static ShooterPID shootPID;
 	Command autonomousCommand;
 //	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -60,13 +63,15 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		try{
+			servo1 = new Servo1();
 //			cam1 = new UsbCamera("cam1", 1); 
+			CameraServer.getInstance().startAutomaticCapture(0);
 			CameraServer.getInstance().startAutomaticCapture(1);
 		} catch(Exception e){}
+		revdigitboard = new REVDigitBoard();
 		table = NetworkTable.getTable("GRIP/myContoursReport");
 		geararm = new GearArm();
 		gearcollector = new GearCollector();
-//		cam = new Camera();
 		compressor = new Compressor(0);
 //		shootPID = new ShooterPID();
 		compressor.start();
@@ -78,7 +83,6 @@ public class Robot extends IterativeRobot {
 		navx = new NavX();
 //		shoot=new Wheel();
 		oi = new OI();
-		autonomousCommand = new AutonomousLeftSide();
 //		for (double area:areas) 
 //        {
 //        	SmartDashboard.putNumber("Area", area);
@@ -95,11 +99,45 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		
+		revdigitboard.clear();
 	}
 
 	@Override
 	public void disabledPeriodic() {
+		
+		SmartDashboard.putNumber("Counter", gearcollector.currentSwitchValue());
+		double REVPot = revdigitboard.getPot(); //LEFT = .27 RIGHT = .25
+		if(REVPot > .263) 
+		{
+			revdigitboard.display("LEFT");
+		}
+		else if(REVPot  <= .263 && REVPot > .255)
+		{
+			revdigitboard.display("MID");
+		}
+		else
+		{
+			revdigitboard.display("RIGH");
+		}
+		if(revdigitboard.getButtonA())
+		{
+			if(REVPot > .263)
+			{
+				autonomousCommand = new AutonomousLeftSide();
+				DriverStation.reportWarning("Autonomous mode set to: LEFT", true);
+			}
+			else if(REVPot  <= .263 && REVPot > .255)
+			{
+				autonomousCommand = new AutonomousMiddle();
+				DriverStation.reportWarning("Autonomous mode set to: MIDDLE", true);
+			}
+			else
+			{
+				autonomousCommand = new AutonomousRightSide();
+				DriverStation.reportWarning("Autonomous mode set to: RIGHT", true);
+			}
+		}
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -127,7 +165,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		SmartDashboard.putNumber("Yaw Angle", navx.getYaw());
+		
 		Scheduler.getInstance().run();
 	}
 
@@ -151,6 +189,7 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void teleopPeriodic() {
+		
 //		if(maxX == 9001) maxX = OI.stick.getRawAxis(0);
 //		if(maxY == 9001) maxY = OI.stick.getRawAxis(1);
 //		if(maxT == 9001) maxT = OI.stick.getRawAxis(2);
@@ -164,13 +203,10 @@ public class Robot extends IterativeRobot {
 //		SmartDashboard.putNumber("max Y", maxY);
 //		SmartDashboard.putNumber("max Twist", maxT);
 //		SmartDashboard.putNumber("servangle", ServoTest.serv.getAngle());
+		
 		double[] areas = table.getNumberArray("area", new double[0]);
-		SmartDashboard.putNumber("Encoder Distance", encoder.getDistance());
-		SmartDashboard.putNumber("Yaw Angle", navx.getYaw());
 		Scheduler.getInstance().run();
 		currentButtonState = oi.getJoystick1().getRawButton(5);
-//		SmartDashboard.putNumber("Framerate", table.getNumber("myNumber", Double.NaN));
-//    	SmartDashboard.putBoolean("HasArea",  table.containsKey("area"));
     	
     		try {
 				SmartDashboard.putString("Area: ", Arrays.toString(table.getNumberArray("area", new double[0])));

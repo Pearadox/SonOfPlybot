@@ -1,10 +1,6 @@
 package org.usfirst.frc.team5414.robot.commands;
 
 import org.usfirst.frc.team5414.robot.Robot;
-
-import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Preferences;
@@ -36,6 +32,9 @@ public class DriveEncDist extends Command implements PIDOutput{
     // Called just before this Command runs the first time
     protected void initialize() {
     	prefs = Preferences.getInstance();
+    	prefs.putDouble("kP", kP);
+    	prefs.putDouble("kI", kI);
+    	prefs.putDouble("kD", kD);
 //    	ahrs = new AHRS(SPI.Port.kMXP);
 //    	ahrs.zeroYaw();
     	Robot.encoder.reset();
