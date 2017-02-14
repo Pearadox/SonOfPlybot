@@ -18,6 +18,7 @@ public class RobotMap {
 	public static int BtnVision = 4;
 	public static int BtnClimber = 5;
 	public static int BtnStop = 6;
+	public static int BtnCollectGear = 11;
 	
 	public static double ShooterkP = 0;
 	public static double ShooterkI = 0;
@@ -32,7 +33,7 @@ public class RobotMap {
 	public static int PWMShooter = 6;
 	public static int PWMGearWheels = 4;
 	public static int PWMlifter = 4;
-	public static int pdpclimber = 15;
+	public static int PDPclimber = 15;
 	public static int climberCurrentSpike = 64;
 	public static double lifterLiftSpeed = -1.0;
 	public static double armRaiseSpeed = 0.4;

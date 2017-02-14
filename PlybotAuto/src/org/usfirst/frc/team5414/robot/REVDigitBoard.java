@@ -189,7 +189,6 @@ public class REVDigitBoard {
  		byte1[8] = charreg[charz[0]][0];
  		byte1[9] = charreg[charz[0]][1];
  		//send the array to the board
- 		DriverStation.reportWarning("asdfjoaiefj;ef", true);
  		i2c.writeBulk(byte1);
  		Timer.delay(0.01);
 	}

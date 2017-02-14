@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class CollectGear extends Command {
-
-	boolean done;
 	
     public CollectGear() {
         requires(Robot.geararm);

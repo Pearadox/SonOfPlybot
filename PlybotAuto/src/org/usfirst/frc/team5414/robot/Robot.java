@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 
+//import edu.wpi.first.wpilibj.
 import java.util.*;
 import org.opencv.core.Mat;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 	public static GearCollector gearcollector;
 	public static REVDigitBoard revdigitboard;
 	public static Servo1 servo1;
+//	public static DigitalInput 
 //	public static ShooterPID shootPID;
 	Command autonomousCommand;
 //	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -63,6 +65,7 @@ public class Robot extends IterativeRobot {
 		try{
 			servo1 = new Servo1();
 //			cam1 = new UsbCamera("cam1", 1); 
+			CameraServer.getInstance().startAutomaticCapture(0);
 			CameraServer.getInstance().startAutomaticCapture(1);
 		} catch(Exception e){}
 		revdigitboard = new REVDigitBoard();
@@ -102,8 +105,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		
-		
-		revdigitboard.display(5);
+		SmartDashboard.putNumber("Counter", gearcollector.currentSwitchValue());
 		double REVPot = revdigitboard.getPot(); //LEFT = .27 RIGHT = .25
 		if(REVPot > .263) 
 		{

@@ -34,6 +34,6 @@ public class Electrical extends Subsystem {
     	}
     
     public double getClimberCurrent() {
-    	return pdp.getCurrent(RobotMap.pdpclimber);
+    	return pdp.getCurrent(RobotMap.PDPclimber);
     }  
 }
