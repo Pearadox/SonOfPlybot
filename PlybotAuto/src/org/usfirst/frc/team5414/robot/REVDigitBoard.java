@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.AnalogInput;
 
 import java.util.*;
@@ -165,10 +166,10 @@ public class REVDigitBoard {
 	 }
 	 
 	 boolean getButtonA() {
-		 return buttonA.get();
+		 return !buttonA.get();
 	 }
 	 boolean getButtonB() {
-		 return buttonB.get();
+		 return !buttonB.get();
 	 }
 	 double getPot() {
 		 return pot.getVoltage();
@@ -188,6 +189,7 @@ public class REVDigitBoard {
  		byte1[8] = charreg[charz[0]][0];
  		byte1[9] = charreg[charz[0]][1];
  		//send the array to the board
+ 		DriverStation.reportWarning("asdfjoaiefj;ef", true);
  		i2c.writeBulk(byte1);
  		Timer.delay(0.01);
 	}

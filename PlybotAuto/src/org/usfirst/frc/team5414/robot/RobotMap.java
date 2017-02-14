@@ -35,8 +35,8 @@ public class RobotMap {
 	public static int pdpclimber = 15;
 	public static int climberCurrentSpike = 64;
 	public static double lifterLiftSpeed = -1.0;
-	public static double armRaiseSpeed = 0.5;
-	public static double armLowerSpeed = -0.5;
+	public static double armRaiseSpeed = 0.4;
+	public static double armLowerSpeed = -0.4;
 	public static double intakeSpeed = 0.5;
 	public static double outtakeSpeed = -0.5;
 	public static double lifterholdspeed = -0.4;

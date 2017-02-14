@@ -96,41 +96,40 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		
+		revdigitboard.clear();
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		
-		int REVPot = (int)(revdigitboard.getPot() * 3);
-		if(REVPot == 0)
+		
+		revdigitboard.display(5);
+		double REVPot = revdigitboard.getPot(); //LEFT = .27 RIGHT = .25
+		if(REVPot > .263) 
 		{
-			revdigitboard.clear();
 			revdigitboard.display("LEFT");
 		}
-		else if(REVPot == 1)
+		else if(REVPot  <= .263 && REVPot > .255)
 		{
-			revdigitboard.clear();
 			revdigitboard.display("MID");
 		}
-		else if(REVPot == 2)
+		else
 		{
-			revdigitboard.clear();
 			revdigitboard.display("RIGH");
 		}
 		if(revdigitboard.getButtonA())
 		{
-			if(REVPot == 0)
+			if(REVPot > .263)
 			{
 				autonomousCommand = new AutonomousLeftSide();
 				DriverStation.reportWarning("Autonomous mode set to: LEFT", true);
 			}
-			else if(REVPot == 1)
+			else if(REVPot  <= .263 && REVPot > .255)
 			{
 				autonomousCommand = new AutonomousMiddle();
 				DriverStation.reportWarning("Autonomous mode set to: MIDDLE", true);
 			}
-			else if(REVPot == 2)
+			else
 			{
 				autonomousCommand = new AutonomousRightSide();
 				DriverStation.reportWarning("Autonomous mode set to: RIGHT", true);
