@@ -30,7 +30,7 @@ public class REVDigitBoard {
 	Map charmap;
 	
 	REVDigitBoard() {
-		i2c = new I2C(SPI.Port.kMXP, 0x70);
+		i2c = new I2C(SPI.Port.kMXP, 0x70); //Also try I2C.Port.kMXP
 		buttonA = new DigitalInput(19);
 		buttonB = new DigitalInput(20);
 		pot = new AnalogInput(3);
